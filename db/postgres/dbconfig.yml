@@ -1,0 +1,11 @@
+develop:
+    dialect: postgres
+    datasource: host=postgres port=5432 dbname=appdb user=user password=pass sslmode=disable
+    dir: migrations
+    table: migrations
+
+test:
+    dialect: postgres
+    datasource: host=postgres port=5432 dbname=appdb user=user password=pass sslmode=disable
+    dir: migrations
+    table: migration

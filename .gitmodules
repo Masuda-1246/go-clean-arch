@@ -1,0 +1,3 @@
+[submodule "app/internal/interfaces/openapi/open-api-spec-template"]
+	path = app/internal/interfaces/openapi/open-api-spec-template
+	url = git@github.com:Masuda-1246/open-api-spec-template.git

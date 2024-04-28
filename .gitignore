@@ -1,0 +1,4 @@
+/app/tmp
+.env
+.env.*
+dbconfig.prod.yml

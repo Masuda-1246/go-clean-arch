@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  api:
+    container_name: app-api
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+      target: develop
+    tty: true
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/go/src/github.com/Masuda-1246/go-clean-arch
+  postgres:
+    container_name: app-postgres
+    build:
+      context: .
+      dockerfile: ./db/postgres/Dockerfile
+      target: develop
+    tty: true
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=appdb
+    ports:
+      - 5432:5432
+    volumes:
+      - -postgres-volume:/var/lib/postgres
+      - ./db/postgres:/db/postgres
+  migrate:
+    container_name: app-migrate
+    build:
+      context: .
+      dockerfile: ./db/postgres/Dockerfile
+      target: migrate
+    volumes:
+      - ./db/postgres:/db/postgres
+
+volumes:
+  -postgres-volume:
+  volume_pgadmin:
+    name: vpga
